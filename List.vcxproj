@@ -104,11 +104,16 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <ClCompile>
+      <PreprocessorDefinitions>MEMTRACE</PreprocessorDefinitions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="List.hpp" />
+    <ClInclude Include="memtrace.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="memtrace.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
