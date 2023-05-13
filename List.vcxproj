@@ -38,6 +38,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
+    <EnableASAN>true</EnableASAN>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -104,11 +105,17 @@
     <Link>
       <SubSystem>Console</SubSystem>
     </Link>
+    <ClCompile>
+      <PreprocessorDefinitions>MEMTRACE</PreprocessorDefinitions>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="List.hpp" />
+    <ClInclude Include="memtrace.h" />
+    <ClInclude Include="SmartPtr.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="memtrace.cpp" />
     <ClCompile Include="test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
