@@ -16,11 +16,17 @@ public:
     }
 
     class iterator;
-    List(List& l) :List() {
-        iterator first = l.begin();
-        iterator last = l.end();
-        while (first != last) {
-            this->Add(*first++);
+    List(const List& l) {
+        start = new ListElement();
+        ListElement* current = start;
+        ListElement* original = l.start->next;
+
+        while (original != nullptr) {
+            current->next = new ListElement();
+            current->next->data = original->data;
+
+            original = original->next;
+            current = current->next;
         }
     }
     ~List() {
@@ -44,7 +50,7 @@ public:
         else {
             ListElement* moving = start;
             while (moving->next->next != nullptr) {
-                moving->next;
+                moving = moving->next;
             }
             new_element->next = moving->next;
             moving->next = new_element;
@@ -85,12 +91,12 @@ public:
 
         T& operator*() {
             if (curr != nullptr) return curr->data;
-            else throw std::out_of_range("hibás iterátor");
+            else throw std::runtime_error("hibás iterátor");
         }
 
         T* operator->() {
             if (curr != nullptr) return &curr->data;
-            else throw std::out_of_range("hibás iterátor");
+            else throw std::runtime_error("hibás iterátor");
         }
     };
 };

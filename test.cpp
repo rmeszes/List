@@ -3,16 +3,27 @@
 #include "memtrace.h"
 #include "List.hpp"
 
+struct yeet {
+	List<int> list;
+	yeet() :list(List<int>()) {
+		list.Add(1);
+		list.Add(2);
+		list.Add(3);
+	}
+	yeet(const yeet& y) :list(y.list){
+	}
+	yeet& operator=(const yeet& other) {
+		if (this != &other) {
+			list = other.list;
+		}
+		return *this;
+	}
+	~yeet() {}
+};
 int main() {
-	List<int> l1;
-	l1.Add(1);
-	l1.Add(2);
-	for (List<int>::iterator i = l1.begin(); i != l1.end(); i++) {
-		std::cout << *i << std::endl;
-	}
-	List<int> l2 = l1;
-	for (List<int>::iterator i = l2.begin(); i != l2.end(); i++) {
-		std::cout << *i << std::endl;
-	}
-	l2.~List();
+	
+	List<yeet> l3;
+	l3.Add(yeet());
+	l3.Add(yeet());
+	l3.Add(yeet());
 }
