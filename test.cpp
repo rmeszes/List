@@ -10,4 +10,9 @@ int main() {
 	for (List<int>::iterator i = l1.begin(); i != l1.end(); i++) {
 		std::cout << *i << std::endl;
 	}
+	List<int> l2 = l1;
+	for (List<int>::iterator i = l2.begin(); i != l2.end(); i++) {
+		std::cout << *i << std::endl;
+	}
+	l2.~List();
 }

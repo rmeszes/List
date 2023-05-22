@@ -16,7 +16,7 @@ public:
     }
 
     class iterator;
-    List(const List& l) :List() {
+    List(List& l) :List() {
         iterator first = l.begin();
         iterator last = l.end();
         while (first != last) {
@@ -34,9 +34,21 @@ public:
     }
 
     void Add(const T& data) {
-        ListElement* p = new ListElement(start);
-        p->data = data;
-        start = p;
+        ListElement* new_element = new ListElement();
+        new_element->data = data;
+
+        if (start->next == nullptr) {
+            new_element->next = start;
+            start = new_element;
+        }
+        else {
+            ListElement* moving = start;
+            while (moving->next->next != nullptr) {
+                moving->next;
+            }
+            new_element->next = moving->next;
+            moving->next = new_element;
+        }
     }
 
     iterator begin() {
